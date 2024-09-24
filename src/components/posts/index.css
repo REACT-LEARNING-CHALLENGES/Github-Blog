@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 4.5rem;
+  min-width: 54rem;
 }
 
 .posts-container .posts-header {

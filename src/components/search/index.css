@@ -5,6 +5,7 @@ input {
   background-color: var(--input);
   border: 1px solid var(--border);
   border-radius: 5px;
+  color: var(--text);
 }
 
 input::placeholder {

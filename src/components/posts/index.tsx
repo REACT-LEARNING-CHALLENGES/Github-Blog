@@ -15,17 +15,29 @@ interface PostsProps {
   }>;
 }
 
-export function Posts({ query = "" }) {
+export function Posts() {
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [posts, setPosts] = useState<PostsProps>([] as PostsProps);
 
+  const fetchPosts = async (searchQuery: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await api.get(
+        `/search/issues?q=${searchQuery}%20repo:REACT-LEARNING-CHALLENGES/Github-Blog`
+      );
+      setPosts(response.data);
+    } catch {
+      setError("Erro ao buscar publicações.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    api
-      .get(
-        `/search/issues?q=${query}%20repo:REACT-LEARNING-CHALLENGES/Github-Blog`
-      )
-      .then((response) => {
-        setPosts(response.data);
-      });
+    fetchPosts(query);
   }, [query]);
 
   return (
@@ -35,12 +47,14 @@ export function Posts({ query = "" }) {
         <span>{`${posts.items?.length} publicações`}</span>
       </div>
 
-      <Search />
+      <Search onSearch={setQuery} />
 
       <div className="posts-list">
-        {posts.items?.map((post) => (
-          <Card key={post.id} post={post} />
-        ))}
+        {loading && <p>Carregando...</p>}
+        {error && <p>{error}</p>}
+        {!loading &&
+          !error &&
+          posts.items?.map((post) => <Card key={post.id} post={post} />)}
       </div>
     </div>
   );
