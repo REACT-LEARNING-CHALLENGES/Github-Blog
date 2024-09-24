@@ -3,7 +3,7 @@ import { Profile } from "../../components/profile";
 
 import "./index.css";
 
-export function Home() {
+export default function Home() {
   return (
     <div className="home-container">
       <Profile />
@@ -11,5 +11,3 @@ export function Home() {
     </div>
   );
 }
-
-export default Home;
