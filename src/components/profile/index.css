@@ -5,6 +5,7 @@
   border-radius: 0.5rem;
   margin-top: -5rem;
   padding: 2rem 2.5rem;
+  width: 100%;
 }
 
 .profile-container img {
@@ -35,6 +36,10 @@
 
 .profile-container .profile-content .profile-header a svg {
   margin-left: 0.3rem;
+}
+
+.profile-container .profile-content {
+  width: 100%;
 }
 
 .profile-container .profile-content p {

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   ArrowSquareOut,
   Building,
@@ -5,19 +6,35 @@ import {
   Users,
 } from "@phosphor-icons/react";
 
+import api from "../../services/api";
+
 import "./index.css";
 
+interface ProfileProps {
+  name: string;
+  login: string;
+  avatar_url: string;
+  bio: string;
+  company: string;
+  followers: number;
+}
+
 export function Profile() {
+  const [profile, setProfile] = useState<ProfileProps>({} as ProfileProps);
+
+  useEffect(() => {
+    api.get(`/users/eliasjanuario`).then((response) => {
+      setProfile(response.data);
+    });
+  }, []);
+
   return (
     <div className="profile-container">
-      <img
-        src="https://avatars.githubusercontent.com/u/68289275?v=4"
-        alt="Profile"
-      />
+      <img src={profile.avatar_url} alt="Profile" />
 
       <div className="profile-content">
         <div className="profile-header">
-          <h2>Elias Januario</h2>
+          <h2>{profile.name}</h2>
 
           <a href="">
             GITHUB
@@ -25,26 +42,22 @@ export function Profile() {
           </a>
         </div>
 
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <p>{profile.bio}</p>
 
         <div className="profile-footer">
           <div>
             <GithubLogo size={20} weight="fill" />
-            <span>Repositories</span>
+            <span>{profile.login}</span>
           </div>
 
           <div>
             <Building size={20} weight="fill" />
-            <span>Followers</span>
+            <span>{profile.company}</span>
           </div>
 
           <div>
             <Users size={20} weight="fill" />
-            <span>Following</span>
+            <span>{`${profile.followers} seguidores`}</span>
           </div>
         </div>
       </div>
