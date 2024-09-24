@@ -1,0 +1,38 @@
+.card-container {
+  height: 16.25rem;
+  padding: 2rem;
+  background-color: var(--post);
+  border-radius: 0.5rem;
+}
+
+.card-container .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-container .card-header h1 {
+  font-size: 1.25rem;
+  color: var(--title);
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.card-container .card-header time {
+  font-size: 0.875rem;
+  color: var(--span);
+  margin-left: 1rem;
+  margin-top: 0.3rem;
+}
+
+.card-container p {
+  font-size: 1rem;
+  color: var(--text);
+  margin-top: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}

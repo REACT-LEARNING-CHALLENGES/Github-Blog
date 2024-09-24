@@ -1,0 +1,29 @@
+.posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4.5rem;
+}
+
+.posts-container .posts-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.posts-container .posts-header h2 {
+  font-size: 1.125rem;
+  color: var(--subtitle);
+}
+
+.posts-container .posts-header span {
+  font-size: 0.875rem;
+  color: var(--span);
+}
+
+.posts-container .posts-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
